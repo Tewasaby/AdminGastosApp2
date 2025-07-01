@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="AdminGastosApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:AdminGastosApp.Views"
+    Title="AdminGastosApp">
+
+    <ShellContent
+        Title="Gastos"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+    <!-- Resumen de gastos -->
+    <ShellContent
+        Title="Resumen de Gastos"
+        Route="ResumenPage"
+        ContentTemplate="{DataTemplate local:ResumenPage}" />
+
+    <!-- Agregar categoría -->
+    <ShellContent
+        Title="Nueva Categoría"
+        Route="AgregarCategoriaPage"
+        ContentTemplate="{DataTemplate local:AgregarCategoriaPage}" />
+
+</Shell>

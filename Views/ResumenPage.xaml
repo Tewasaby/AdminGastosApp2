@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:charts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+             x:Class="AdminGastosApp.Views.ResumenPage"
+             Title="Resumen Mensual">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="25">
+
+            <!-- Filtros: Mes y Año -->
+            <HorizontalStackLayout Spacing="20">
+                <Picker Title="Mes"
+                        ItemsSource="{Binding Meses}"
+                        SelectedIndex="{Binding MesSeleccionado}" />
+                <Picker Title="Año"
+                        ItemsSource="{Binding Anios}"
+                        SelectedItem="{Binding AnioSeleccionado}" />
+            </HorizontalStackLayout>
+
+            <!-- Total del mes -->
+            <Label Text="{Binding TotalDelMes, StringFormat='Total del mes: {0:C}'}"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <!-- Gráfico de pastel -->
+            <charts:ChartView Chart="{Binding Chart}"
+                              HeightRequest="300"      
+                              IsVisible="{Binding Chart, Converter={StaticResource NullToFalseConverter}}"
+                              Margin="0,10" />
+
+            <!-- Lista de gastos -->
+            <CollectionView ItemsSource="{Binding GastosDelMes}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="#cccccc"
+                               CornerRadius="5"
+                               Padding="10"
+                               Margin="5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Descripcion}" FontAttributes="Bold" />
+                                <Label Text="{Binding Categoria}" FontSize="14" TextColor="Gray" />
+                                <Label Text="{Binding Fecha, StringFormat='Fecha: {0:dd/MM/yyyy}'}" FontSize="12" />
+                                <Label Text="{Binding Monto, StringFormat='Monto: {0:C}'}" FontSize="14" TextColor="Green" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

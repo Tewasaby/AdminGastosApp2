@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AdminGastosApp.Views.MainPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="Mis Gastos">
+
+    <Grid>
+        <!-- Lista de gastos -->
+        <CollectionView ItemsSource="{Binding Gastos}" Margin="10">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="5"
+                           Padding="10"
+                           CornerRadius="5"
+                           BorderColor="LightGray"
+                           HasShadow="True"
+                           BackgroundColor="Transparent">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Descripcion}" FontAttributes="Bold" FontSize="16" />
+                            <Label Text="{Binding Categoria}" TextColor="Gray" FontSize="13" />
+                            <Label Text="{Binding Fecha, StringFormat='Fecha: {0:dd/MM/yyyy}'}" FontSize="12" TextColor="DarkGray"/>
+                            <Label Text="{Binding Monto, StringFormat='Monto: {0:C}'}" FontSize="14" TextColor="Green"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- 🔹 Botón flotante -->
+        <Button 
+                Text="+"
+                Command="{Binding AddGastoCommand}"
+                WidthRequest="60"
+                HeightRequest="60"
+                CornerRadius="30"
+                FontSize="24"
+                FontAttributes="Bold"
+                BackgroundColor="DodgerBlue"
+                TextColor="White"
+                Margin="20"
+                HorizontalOptions="End"
+                VerticalOptions="End" />
+
+    </Grid>
+
+</ContentPage>

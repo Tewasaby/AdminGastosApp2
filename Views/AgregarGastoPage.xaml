@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AdminGastosApp.Views.AgregarGastoPage"
+             Title="Nuevo Gasto">
+    
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
+            <!-- Descripción -->
+            <Entry Placeholder="Descripción" Text="{Binding Descripcion}" />
+
+            <!-- Monto -->
+            <Entry Placeholder="Monto" 
+                   Keyboard="Numeric" 
+                   Text="{Binding Monto, StringFormat='{0:F2}'}" />
+
+            <!-- Fecha -->
+            <DatePicker Date="{Binding Fecha}" />
+
+            <!-- Categoría -->
+            <Picker Title="Categoría" 
+                    ItemsSource="{Binding Categorias}"
+                    SelectedItem="{Binding CategoriaSeleccionada}" />
+
+            <!-- Botón Guardar -->
+            <Button Text="Guardar" 
+                    Command="{Binding GuardarGastoCommand}"
+                    BackgroundColor="#512BD4" 
+                    TextColor="White" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
